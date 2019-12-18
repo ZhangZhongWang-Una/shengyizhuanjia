@@ -1,0 +1,42 @@
+app-welcome {
+    ion-toolbar {
+      --background: transparent;
+      --border-color: transparent;
+    }
+  }
+  app-welcome {
+    .fixed-bottom{
+      position: absolute;
+      bottom: 0;
+      z-index: 10;
+      width: 100%;
+    }
+  }
+  app-welcome {
+    ion-col {
+      --ion-grid-column-padding: 0;
+      text-align: center;
+      align-self: auto;
+    }
+  }
+  app-welcome {
+    .fixed-bottom-1{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
+  // app-welcome {
+  //   ion-grid {
+  //     --ion-grid-padding: 0;
+  //   }
+  // }
+
+  // app-welcome{
+  //   ion-button {
+  //     position: absolute
+  //   }
+  // }
+  

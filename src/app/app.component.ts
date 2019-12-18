@@ -34,7 +34,12 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      // tslint:disable-next-line: only-arrow-functions
+      // setTimeout(function() {
+      //   this.splashscreen.hide();
+      // }, 100);
       this.splashScreen.hide();
     });
   }
+
 }

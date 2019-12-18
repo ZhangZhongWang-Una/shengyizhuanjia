@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar no-border>
+    <ion-buttons slot="end">
+      <ion-button color="primary" [hidden]="!showSkip" (click)="skip($event)">跳过</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding >
+  <ion-slides #slides pager='true' (ionSlideWillChange)="onSlideWillChange($event)">
+    <ion-slide>
+      <img src="/assets/img/splsh_five.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="./assets/img/splsh_one.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/splsh_three.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/splsh_four.png" alt="">
+    </ion-slide>
+    <ion-slide>
+      <img src="assets/img/splsh_two.png" alt="">
+    </ion-slide>
+    </ion-slides>
+
+    <ion-row >
+      <ion-col >
+        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showlogin" href="/login" >登录</ion-button>
+      </ion-col>
+      <ion-col >
+        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showregister" href="/login">注册</ion-button>
+      </ion-col>
+    </ion-row>
+</ion-content>
