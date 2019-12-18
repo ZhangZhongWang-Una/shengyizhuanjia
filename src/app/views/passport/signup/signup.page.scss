@@ -1,0 +1,21 @@
+ion-toolbar {
+    --background: transparent;
+    --border-color: transparent;
+  }
+  fixed-bottom{
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+  }
+  .logo{
+    width: 33%;
+  }
+  .line {
+    height: 1.5px;
+    border-top-width: 1px;
+    border-top-color: #000000;
+    margin: 0;
+  }
+  .full-width {
+    width: 100%;
+  }

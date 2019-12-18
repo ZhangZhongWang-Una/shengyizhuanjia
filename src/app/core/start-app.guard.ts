@@ -19,10 +19,10 @@ export class StartAppGuard implements CanActivate {
     if ( appConfig.hasRun === false ) {
       appConfig.hasRun = true;
       this.localStorageService.set(APP_KEY, appConfig);
+      this.router.navigateByUrl('home');
       return true;
     } else {
-      this.router.navigateByUrl('home');
-      return false;
+      return true;
     }
   }
 }

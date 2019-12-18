@@ -1,3 +1,6 @@
+import { UserServiceService } from './shared/services/user-service.service';
+import { AuthenticationCodeService } from './shared/services/authentication-code.service';
+import { PassportModule } from './views/passport/passport.module';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,13 +22,16 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    PassportModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    LocalStorageService
+    LocalStorageService,
+    AuthenticationCodeService,
+    UserServiceService
   ],
   bootstrap: [AppComponent]
 })
