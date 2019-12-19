@@ -18,7 +18,8 @@ const routes: Routes = [
     path: 'list',
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
-  { path: 'passport', loadChildren: './views/passport/passport.module#PassportModule' }
+  { path: 'passport', loadChildren: './views/passport/passport.module#PassportModule' },
+  { path: 'forgot-password', loadChildren: './views/forgot-password/forgot-password.module#ForgotPasswordPageModule' }
   // { path: 'login', loadChildren: './views/login/login.module#LoginPageModule' },
   // { path: 'signup', loadChildren: './views/passport/signup/signup.module#SignupPageModule' }
 ];

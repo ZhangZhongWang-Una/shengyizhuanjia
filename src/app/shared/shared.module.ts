@@ -1,3 +1,4 @@
+import { CopyrightComponent } from './components/copyright/copyright.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
@@ -7,7 +8,7 @@ import { LocalStorageService } from './services/local-storage.service';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CopyrightComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -19,7 +20,8 @@ import { LocalStorageService } from './services/local-storage.service';
   exports: [
     CommonModule,
     FormsModule,
-    IonicModule
+    IonicModule,
+    CopyrightComponent
   ]
 
 })
