@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { ISLOGIN_KEY } from 'src/app/views/welcome/welcome.page';
 
 @Injectable({
   providedIn: 'root'
@@ -36,12 +37,16 @@ export class UserServiceService {
    */
   login(account: string, password: string): boolean {
     const accounts = this.localStorageService.get('user', '').accounts;
-    if (!(account === accounts[0].identifier && password === accounts[0].passwordToken)
-      && !(account === accounts[1].identifier && password === accounts[1].passwordToken)) {
+    if (!(account === accounts[0].identifier.toString() && password === accounts[0].passwordToken.toString())
+      && !(account === accounts[1].identifier.toString() && password === accounts[1].passwordToken.toString())) {
       return false; // 账号或密码错误
     }
     const loginTime = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
-    this.localStorageService.set('loginTime', loginTime);
+    const isLoginConfig: any = this.localStorageService.get(ISLOGIN_KEY, {
+      hasLogin: true,
+      time: loginTime
+    });
+    this.localStorageService.set(ISLOGIN_KEY, isLoginConfig);
     return true;
   }
 

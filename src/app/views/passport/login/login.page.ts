@@ -1,3 +1,4 @@
+import { ISLOGIN_KEY } from './../../welcome/welcome.page';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { NavController, ToastController, AlertController } from '@ionic/angular';

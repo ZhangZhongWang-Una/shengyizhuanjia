@@ -1,4 +1,4 @@
-import { APP_KEY } from './../views/welcome/welcome.page';
+import { APP_KEY, ISLOGIN_KEY } from './../views/welcome/welcome.page';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../shared/services/local-storage.service';
 import { CanActivate, Router } from '@angular/router';
@@ -15,6 +15,10 @@ export class StartAppGuard implements CanActivate {
       hasRun: false,
       version: '1.0.0'
     });
+        const isLoginConfig: any = this.localStorageService.get(ISLOGIN_KEY, {
+      hasLogin: false,
+      loginTime: Date.now()
+    });
     // tslint:disable-next-line: align
     if ( appConfig.hasRun === false ) {
       appConfig.hasRun = true;
@@ -22,7 +26,13 @@ export class StartAppGuard implements CanActivate {
       this.router.navigateByUrl('home');
       return true;
     } else {
-      return true;
+      const now = new Date(+new Date() - 136 * 3600 * 1000 ).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
+      if (now < isLoginConfig.time && isLoginConfig.hasLogin === true) {
+        this.router.navigateByUrl('home');
+        return true;
+      } else {
+        return true;
+      }
     }
   }
 }

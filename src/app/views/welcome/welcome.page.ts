@@ -3,6 +3,7 @@ import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 export const APP_KEY = 'App';
+export const ISLOGIN_KEY = 'IsLogin';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.page.html',
@@ -28,12 +29,21 @@ export class WelcomePage implements OnInit {
       this.showregister = !end;
     });
   }
+  // 跳过
   skip(event) {
-    // tslint:disable-next-line: variable-name
-    this.slides.length().then((number: any) => {
-      this.slides.slideTo(number);
-    });
+      const signTime = this.localStorageService.get('signTime', '');
+      if ( signTime === '' || signTime === null) {
+        this.router.navigateByUrl('/signup');
+      } else {
+        this.router.navigateByUrl('/login');
+      }
   }
+  // skip(event) {
+  //   // tslint:disable-next-line: variable-name
+  //   this.slides.length().then((number: any) => {
+  //     this.slides.slideTo(number);
+  //   });
+  // }
   // ionViewWillEnter() {
   //   // 第一次调用get方法时，App'这个key不存在，第二个参数会作为默认值返回。
   //   let appConfig: any = this.localStorageService.get(APP_KEY, {
