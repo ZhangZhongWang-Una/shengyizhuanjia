@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -17,7 +18,9 @@ export class WelcomePage implements OnInit {
   showregister = true;
   @ViewChild('slides', {static: true}) slides: any;
   // constructor() { }
- constructor(private localStorageService: LocalStorageService, private router: Router) { }
+ constructor(private localStorageService: LocalStorageService,
+             private router: Router,
+             private menuController: MenuController) { }
 
   ngOnInit() {
   }
@@ -31,13 +34,22 @@ export class WelcomePage implements OnInit {
   }
   // 跳过
   skip(event) {
-      const signTime = this.localStorageService.get('signTime', '');
-      if ( signTime === '' || signTime === null) {
-        this.router.navigateByUrl('/signup');
-      } else {
+      const signTime = this.localStorageService.get('signupTime', '');
+      console.log(signTime);
+      if ( signTime != null) {
         this.router.navigateByUrl('/login');
+      } else {
+        this.router.navigateByUrl('/signup');
       }
   }
+
+  ionViewWillEnter() {
+    this.menuController.enable(false);
+  }
+
+  // ionViewDidLeave() {
+  //   this.menuController.enable(true);
+  // }
   // skip(event) {
   //   // tslint:disable-next-line: variable-name
   //   this.slides.length().then((number: any) => {

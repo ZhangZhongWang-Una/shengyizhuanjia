@@ -1,44 +1,56 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      首页
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="calendar"></ion-icon>
+      </ion-button>
+      <ion-button color="light">
+        <ion-icon slot="icon-only" name="notifications"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-    <ion-card class="welcome-card">
-      <img src="/assets/shapes.svg" alt="" />
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+<ion-content non-padding>
+  <div text-center>
+    <img src="assets\img\home\androidbanner.png" alt="首页图片">
+  </div>
+
+  <ion-grid>
+    <ion-row color="medium">
+      <ion-col *ngFor="let s of sales">
+        <h6>{{s.title}}</h6>
+        <h4><span>{{s.current | number:'1.2-2'}}元</span></h4>
+        <p>
+          {{s.content}}<br>
+          <span [ngClass]="{'less-equal':s.current - s.previous <= 0,'greater':s.current - s.previous > 0}">
+          {{s.current - s.previous | number:'1.2-2'}}
+          </span>
+          <ng-container  [ngSwitch]="minus(s.current, s.previous)">
+            <ion-icon name="arrow-round-up" color="danger" *ngSwitchCase="1"></ion-icon>
+            <ion-icon name="arrow-round-forward" color="success" *ngSwitchCase="0"></ion-icon>
+            <ion-icon name="arrow-round-down" color="success" *ngSwitchCase="-1"></ion-icon>
+          </ng-container>
+        </p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="quick-actions"  *ngFor="let q of quicks">
+      <ion-col class="quick-action-item" *ngFor="let qq of q">
+        <a class="shortcut" style="font-size: 15px;" routerLink={{qq.href}} *ngIf="!qq.disable">
+          <img src="assets/img/home/{{qq.name}}.png" alt="" class="index_quickaction">
+          <!--<ion-icon name={{qq.name}}></ion-icon>-->
+          <div>{{qq.text}}</div>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <zzw-copyright [bottom]="'20px'"></zzw-copyright>
 </ion-content>

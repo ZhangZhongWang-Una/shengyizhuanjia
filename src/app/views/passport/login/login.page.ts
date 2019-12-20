@@ -1,7 +1,7 @@
 import { ISLOGIN_KEY } from './../../welcome/welcome.page';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { NavController, ToastController, AlertController } from '@ionic/angular';
+import { NavController, ToastController, AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserServiceService } from 'src/app/shared/services/user-service.service';
 import { NgForm } from '@angular/forms';
@@ -22,7 +22,8 @@ export class LoginPage implements OnInit {
               private router: Router,
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
-              private userService: UserServiceService) { }
+              private userService: UserServiceService,
+              private menuController: MenuController) { }
 
   ngOnInit() {
   }
@@ -52,6 +53,7 @@ export class LoginPage implements OnInit {
         });
         alert.present();
       } else {
+        this.menuController.enable(true);
         this.router.navigateByUrl('/home');
       }
     }

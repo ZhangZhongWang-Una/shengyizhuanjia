@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { AlertController, NavController, ToastController } from '@ionic/angular';
+import { AlertController, NavController, ToastController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,8 @@ export class ForgotPasswordPage implements OnInit {
               private alertCtrl: AlertController,
               private navCtrl: NavController,
               private toastCtrl: ToastController,
-              private router: Router) { }
+              private router: Router,
+              private menuController: MenuController) { }
 
 accout = '';
 
@@ -44,5 +45,10 @@ async  onClick() {
     alert.present();
     this.router.navigateByUrl('/login');
   }
+  }
+
+  // 禁用菜单
+  ionViewWillEnter() {
+    this.menuController.enable(false);
   }
 }

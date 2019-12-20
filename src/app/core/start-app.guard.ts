@@ -1,3 +1,4 @@
+import { MenuController } from '@ionic/angular';
 import { APP_KEY, ISLOGIN_KEY } from './../views/welcome/welcome.page';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from '../shared/services/local-storage.service';
@@ -9,7 +10,8 @@ import { CanActivate, Router } from '@angular/router';
   providedIn: 'root'
 })
 export class StartAppGuard implements CanActivate {
-  constructor(private localStorageService: LocalStorageService, private router: Router) { }
+  constructor(private localStorageService: LocalStorageService,
+              private router: Router) { }
   canActivate(route: import('@angular/router').ActivatedRouteSnapshot, state: import('@angular/router').RouterStateSnapshot): boolean  {
         const appConfig: any = this.localStorageService.get(APP_KEY, {
       hasRun: false,

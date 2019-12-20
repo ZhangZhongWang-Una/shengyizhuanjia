@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AuthenticationCodeService } from 'src/app/shared/services/authentication-code.service';
-import { NavController, IonSlides, AlertController } from '@ionic/angular';
+import { NavController, IonSlides, AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { UserServiceService } from 'src/app/shared/services/user-service.service';
@@ -19,7 +19,8 @@ export class SignupPage implements OnInit {
               private router: Router,
               private localStorageService: LocalStorageService,
               private userService: UserServiceService,
-              public alertController: AlertController) { }
+              public alertController: AlertController,
+              private menuController: MenuController) { }
 
     @ViewChild('signupSlides', {static: true}) signupSlides: IonSlides;
     // 生成的验证码
@@ -214,4 +215,13 @@ export class SignupPage implements OnInit {
 
       this.router.navigateByUrl('/login');
     }
+
+    // 禁用菜单
+    ionViewWillEnter() {
+      this.menuController.enable(false);
+    }
+
+    // ionViewDidLeave() {
+    //   this.menuController.enable(true);
+    // }
 }
