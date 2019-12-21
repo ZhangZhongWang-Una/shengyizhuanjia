@@ -33,6 +33,7 @@ export class StartAppGuard implements CanActivate {
         this.router.navigateByUrl('home');
         return true;
       } else {
+        this.router.navigateByUrl('login');
         return true;
       }
     }

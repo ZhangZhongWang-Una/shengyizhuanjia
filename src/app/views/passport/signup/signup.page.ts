@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AuthenticationCodeService } from 'src/app/shared/services/authentication-code.service';
-import { NavController, IonSlides, AlertController, MenuController } from '@ionic/angular';
+import { NavController, IonSlides, AlertController, MenuController, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { UserServiceService } from 'src/app/shared/services/user-service.service';
@@ -20,13 +20,11 @@ export class SignupPage implements OnInit {
               private localStorageService: LocalStorageService,
               private userService: UserServiceService,
               public alertController: AlertController,
-              private menuController: MenuController) { }
+              private menuController: MenuController,
+              private toastCtrl: ToastController,
+              private alertCtrl: AlertController) { }
 
     @ViewChild('signupSlides', {static: true}) signupSlides: IonSlides;
-    // 生成的验证码
-    private authCode: string;
-    // 生成的验证码
-    private authMD5Code: string;
     signup = {
         phone: '',
         email: '',
@@ -95,7 +93,6 @@ export class SignupPage implements OnInit {
             this.verifyCode.countdown = 60;
             this.verifyCode.verifyCodeTips = '重新获取';
             this.verifyCode.disable = true;
-            this.authMD5Code = '';
             return;
         } else {
             this.verifyCode.countdown--;
@@ -110,15 +107,12 @@ export class SignupPage implements OnInit {
     /**
      * 验证码--短信验证
      */
-    getCode() {
+    async getCode() {
       if (this.signup.phone === '') {
         console.log('请填写手机号！');
         return;
       } else {
-        this.authCode = this.authenticationCode.createCode(this.verifyCode.codeLength);
-        console.log('验证码：' + this.authCode);
-        this.authMD5Code = Md5.hashStr(this.authCode).toString();
-        // 发送短信
+        this.authenticationCode.sendSms(this.signup.phone, this.verifyCode.codeLength);
         // 发送验证码成功后开始倒计时
         this.verifyCode.disable = false;
         this.settime();
@@ -127,14 +121,23 @@ export class SignupPage implements OnInit {
     /**
      * 检验验证码
      */
-    checkCode() {
-        // console.log(this.verifycode);
-        if (this.authenticationCode.validate(this.verifyCode.code.toString())) {
+    async checkCode() {
+        console.log(this.verifyCode);
+        if (this.verifyCode.code == null || this.verifyCode.code === '') {
+          const toast = await this.toastCtrl.create({
+            message: '输入不能为空',
+            duration: 3000
+          });
+          toast.present();
+        } else {
+          if (this.authenticationCode.validate(this.verifyCode.code.toString())) {
             this.next();
             this.verifyCode.fail = false;
         } else {
             this.verifyCode.fail = true;
         }
+        }
+
     }
     /**
      * 判断验证码是否相同

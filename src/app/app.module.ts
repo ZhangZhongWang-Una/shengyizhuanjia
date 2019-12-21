@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { SaleService } from './shared/services/sale.service';
 import { UserServiceService } from './shared/services/user-service.service';
 import { AuthenticationCodeService } from './shared/services/authentication-code.service';
@@ -22,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     IonicModule.forRoot(),
     AppRoutingModule,
     SharedModule,
-    PassportModule
+    PassportModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

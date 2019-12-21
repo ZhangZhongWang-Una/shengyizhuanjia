@@ -73,7 +73,7 @@
       <form novalidate>
         <ion-list>
           <ion-item>
-            <ion-input slot="start" name="authcode" type="number" placeholder="请输入验证码" required
+            <ion-input slot="start" name="authcode" type="text" placeholder="请输入验证码" required
             pattern="\d{0,8}$" [(ngModel)]="verifyCode.code" #authcode="ngModel"></ion-input>
             <ion-button color="primary" expand="full" slot="end"
                         [disabled]="!verifyCode.disable" (click)="getCode()"

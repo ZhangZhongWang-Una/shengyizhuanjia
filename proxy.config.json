@@ -1,0 +1,11 @@
+{
+    "/api": {
+        "target": "https://yun.tim.qq.com/v5/tlssmssvr/sendsms",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/api": ""
+        }
+    }
+}
