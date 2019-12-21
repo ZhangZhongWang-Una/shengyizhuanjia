@@ -67,4 +67,5 @@ export class UserServiceService {
     this.localStorageService.set('user', tmp);
     return true;
   }
+
 }

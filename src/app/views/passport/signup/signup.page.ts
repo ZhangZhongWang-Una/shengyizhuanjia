@@ -140,7 +140,7 @@ export class SignupPage implements OnInit {
 
     }
     /**
-     * 判断验证码是否相同
+     * 判断两次输入的密码是否相同
      */
     oncheckInformation() {
         // console.log('sureCode : ' + this.signup.confirmPassword);

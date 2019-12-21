@@ -1,19 +1,14 @@
-<!-- <ion-header>
-  <ion-toolbar no-border>
-    <ion-buttons slot="start">
-      <ion-back-button text="返回" color="primary"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header> -->
 <ion-header>
-  <ion-toolbar  no-border>
-    <ion-title>注册</ion-title>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="返回"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content no-padding>
+<ion-content class="ion-no-padding">
 
-  <div text-center>
+  <div class="ion-text-center">
     <img class="logo" src="assets\img\signup\logo.png" alt="">
   </div>
 
@@ -23,21 +18,21 @@
         <img src="assets/img/signup/register_one.png" alt="" *ngIf="slideIndex!==0">
         <img src="assets/img/signup/register_one_one.png" alt="" *ngIf="slideIndex===0">
       </ion-col>
-      <ion-col align-self-center>
+      <ion-col class="ion-align-self-center">
         <hr class="line" />
       </ion-col>
       <ion-col>
         <img src="assets/img/signup/register_two.png" alt="" *ngIf="slideIndex!==1">
         <img src="assets/img/signup/register_two_two.png" alt="" *ngIf="slideIndex===1">
       </ion-col>
-      <ion-col align-self-center>
+      <ion-col class="ion-align-self-center">
         <hr class="line">
       </ion-col>
       <ion-col>
         <img src="assets/img/signup/register_three.png" alt="" *ngIf="slideIndex!==2">
         <img src="assets/img/signup/register_three_three.png" alt="" *ngIf="slideIndex===2">
       </ion-col>
-      <ion-col align-self-center>
+      <ion-col class="ion-align-self-center">
         <hr class="line">
       </ion-col>
       <ion-col>
@@ -62,7 +57,7 @@
             <p [hidden]="!phone.errors?.pattern" padding-start>您输入的手机号格式不正确</p>
           </ion-text>
         </ion-list>
-        <div padding-horizontal>
+        <div class="ion-padding-horizontal">
           <ion-button type="submit" expand="full" color="primary" [disabled]="phoneForm.invalid">
             下一步
           </ion-button>
@@ -89,12 +84,12 @@
         </ion-text>
         <!-- <p>{{'验证码 ：' + code_test}}</p>
         <p>{{'MD5加密：' + code_MD5}}</p> -->
-        <div padding-horizontal>
+        <div class="ion-padding-horizontal">
           <ion-button expand="full" color="primary" (click)="checkCode()">
               下一步
           </ion-button>
         </div>
-        <div padding-horizontal>
+        <div class="ion-padding-horizontal">
           <ion-button expand="full" color="primary" (click)="previous()">
             上一步
           </ion-button>
@@ -146,13 +141,13 @@
             <p padding-start>两次密码不一致或账号已注册过</p>
           </ion-text>
         </ion-list>
-        <div padding-horizontal>
+        <div class="ion-padding-horizontal">
           <ion-button expand="full" color="primary" [disabled]="information.invalid"
                       (click)="oncheckInformation()">
             确定注册
           </ion-button>
         </div>
-        <div padding-horizontal>
+        <div class="ion-padding-horizontal">
           <ion-button expand="full" color="primary" (click)="previous()">
             上一步
           </ion-button>
@@ -167,7 +162,7 @@
                 </ion-col>
             </ion-row>
             <ion-row class="fix-width">
-                <div padding-horizontal class="full-width">
+                <div class="ion-padding-horizontal" class="full-width">
                     <ion-button expand="full" color="primary" (click)="gotoLoginPage()">
                         登陆
                     </ion-button>

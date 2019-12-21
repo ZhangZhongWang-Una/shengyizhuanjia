@@ -1,14 +1,14 @@
 <ion-app>
   <ion-split-pane>
     <ion-menu>
-      <ion-header>
-        <ion-toolbar color="dark">
+      <!-- <ion-header>
+        <ion-toolbar color="medium">
           <ion-title>菜单</ion-title>
         </ion-toolbar>
-      </ion-header>
-      <ion-content color="dark">
-        <ion-list>
-          <ion-item color="dark">
+      </ion-header> -->
+      <ion-content color="medium">
+        <ion-list color="medium" style="padding-top: 0; padding-bottom: 0;">
+          <ion-item color="medium">
             <ion-label>
               <ion-text>
                 <h2>{{shopName}}</h2>
@@ -18,8 +18,8 @@
             <ion-badge slot="end" color="danger">VIP</ion-badge>
           </ion-item>
           <ion-menu-toggle auto-hide="ture" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="dark">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="medium">
+              <ion-icon slot="start" [name]="p.icon" ></ion-icon>
               <ion-label>
                 {{p.title}}
               </ion-label>

@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 export class AppComponent {
   appPages: Array<{title: string, url: string, icon: string}> = [
     { title: '开店论坛', url: '\home', icon: 'chatboxes' },
-    { title: '手机橱窗', url: '\home', icon: 'create' },
-    { title: '邀请有礼', url: '\home', icon: 'git-merge' },
-    { title: '资金账户', url: '\home', icon: 'cash' },
-    { title: '反馈建议', url: '\home', icon: 'cash' },
-    { title: '帮助中心', url: '\home', icon: 'cash' },
+    { title: '手机橱窗', url: '\home', icon: 'phone-portrait' },
+    { title: '邀请有礼', url: '\home', icon: 'share' },
+    { title: '资金账户', url: '\home', icon: 'logo-yen' },
+    { title: '反馈建议', url: '\home', icon: 'contacts' },
+    { title: '帮助中心', url: '\home', icon: 'help' },
   ];
   shopName = '';
   phone = '';

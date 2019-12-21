@@ -32,5 +32,3 @@ npm-debug.log*
 /resources/ios
 /resources/windows
 /www
-
-src/app/shared/services/authentication-code.service.ts
