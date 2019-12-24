@@ -1,3 +1,4 @@
+import { Register } from './../../views/passport/register';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { ISLOGIN_KEY } from 'src/app/views/welcome/welcome.page';
@@ -12,19 +13,19 @@ export class UserServiceService {
   /**
    * 注册，保存用户信息
    */
-  signUp(phone: string, email: string, password: string, shopname: string): boolean {
+  signUp(register: Register): boolean {
     const account = this.localStorageService.get('user', '');
     console.log('account:' + account);
-    if (account != null && (phone === account.accounts[0].identifier || email === account.accounts[1].identifier)) {
+    if (account != null && (register.phone === account.accounts[0].identifier || register.email === account.accounts[1].identifier)) {
       console.log('该账号已经注册过了');
       return false;
     }
     const user = {
-      shopName: shopname,
+      shopName: register.shopName,
       accounts: []
     };
-    user.accounts[0] = { identifier: phone, passwordToken: password};
-    user.accounts[1] = { identifier: email, passwordToken: password};
+    user.accounts[0] = { identifier: register.phone, passwordToken: register.password};
+    user.accounts[1] = { identifier: register.email, passwordToken: register.password};
     this.localStorageService.set('user', user); console.log(user);
 
     const time = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
@@ -67,5 +68,4 @@ export class UserServiceService {
     this.localStorageService.set('user', tmp);
     return true;
   }
-
 }

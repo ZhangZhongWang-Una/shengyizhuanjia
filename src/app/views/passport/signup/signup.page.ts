@@ -1,3 +1,4 @@
+import { Register } from './../register';
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AuthenticationCodeService } from 'src/app/shared/services/authentication-code.service';
 import { NavController, IonSlides, AlertController, MenuController, ToastController } from '@ionic/angular';
@@ -25,12 +26,19 @@ export class SignupPage implements OnInit {
               private alertCtrl: AlertController) { }
 
     @ViewChild('signupSlides', {static: true}) signupSlides: IonSlides;
-    signup = {
-        phone: '',
-        email: '',
-        shopName: '',
-        password: '',
-        confirmPassword: '',
+    // signup = {
+    //     phone: '',
+    //     email: '',
+    //     shopName: '',
+    //     password: '',
+    //     confirmPassword: '',
+    // };
+    signup: Register = {
+      phone: '',
+      email: '',
+      shopName: '',
+      password: '',
+      confirmPassword: '',
     };
     submited = false;
     slideIndex: any = 0;
@@ -189,8 +197,7 @@ export class SignupPage implements OnInit {
     }
 
     saveUser(): boolean {
-        const res: boolean = this.userService.signUp(this.signup.phone, this.signup.email,
-          this.signup.password, this.signup.shopName);
+        const res: boolean = this.userService.signUp(this.signup);
         if (res === true) {
           console.log('注册成功');
           return true;
