@@ -19,9 +19,13 @@ const routes: Routes = [
     loadChildren: () => import('./list/list.module').then(m => m.ListPageModule)
   },
   { path: 'passport', loadChildren: './views/passport/passport.module#PassportModule' },
-  { path: 'forgot-password', loadChildren: './views/forgot-password/forgot-password.module#ForgotPasswordPageModule' }
-  // { path: 'login', loadChildren: './views/login/login.module#LoginPageModule' },
-  // { path: 'signup', loadChildren: './views/passport/signup/signup.module#SignupPageModule' }
+  { path: 'forgot-password', loadChildren: './views/forgot-password/forgot-password.module#ForgotPasswordPageModule' },
+  { path: 'setting', loadChildren: './views/setting/setting.module#SettingPageModule' },
+  { path: 'about-us', loadChildren: './views/about-us/about-us.module#AboutUsPageModule' },
+  { path: 'change-password', loadChildren: './views/change-password/change-password.module#ChangePasswordPageModule' },
+  { path: 'shop', loadChildren: './views/shop/shop.module#ShopPageModule' },
+  { path: 'shop-edit', loadChildren: './views/shop-edit/shop-edit.module#ShopEditPageModule' }
+
 ];
 
 @NgModule({

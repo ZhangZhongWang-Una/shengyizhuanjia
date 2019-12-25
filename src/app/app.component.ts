@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { Router } from '@angular/router';
+import { USER_KEY } from './shared/services/user-service.service';
 
 @Component({
   selector: 'app-root',
@@ -39,7 +40,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      const user = this.localStorageService.get('user', '');
+      const user = this.localStorageService.get(USER_KEY, '');
       if ( user != null) {
         this.shopName = user.shopName;
         this.phone = user.accounts[0].identifier;

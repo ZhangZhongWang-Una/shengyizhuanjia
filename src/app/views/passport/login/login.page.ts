@@ -3,7 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { NavController, ToastController, AlertController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/shared/services/user-service.service';
+import { UserServiceService, USER_KEY } from 'src/app/shared/services/user-service.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
       toast.present();
     } else {
       // 密码不对时提示错误
-      const accounts = this.localStorageService.get('user', '').accounts;
+      const accounts = this.localStorageService.get(USER_KEY, '').accounts;
       if (!this.userService.login(this.username, this.password)) {
         const alert = await this.alertCtrl.create({
           header: '提示',

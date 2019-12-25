@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar no-border>
+    <ion-buttons slot="start">
+      <ion-back-button text="返回" color="primary"></ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>关于我们</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>工程实训</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label><b>学号：</b></ion-label>
+          <ion-note slot="end">190327125</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label><b>姓名：</b></ion-label>
+          <ion-note slot="end">张钟旺</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label><b>已完成功能:</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            <li><i>欢迎界面：</i>若不是第一次登陆则跳转到home界面；否则，进入欢迎界面</li>
+            <li><i>注册界面：</i>用手机号和邮箱进行注册；注册后存储在本地；随机生成验证码（倒计时）；MD5加密；短信发送</li>
+            <li><i>登陆界面：</i>判断用户上次登陆时间，若超过6天则重新登陆；对比本地数据进行登陆用户信息</li>
+            <li><i>找回密码界面：</i>输入账号后给手机发送短信，填写验证码正确后重新设置密码</li>
+            <li><i>版权声明：</i>封装版权声明功能</li>
+            <li><i>主页界面：</i>实现左侧菜单栏；在主页显示用户信息</li>
+            <li><i>店铺信息设置：</i>实现页面的数据通信</li>
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><b>未完成功能：</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            <li><i>Ajax请求：</i>因为本学期课程的数据都是存在本地，只有前端所有没有实现Ajax请求</li>
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><b>学习与收获：</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            因为之前涉及比较多的是关于后端的开发，这半年的课程让我觉得前端人员也不是那么的轻松，特别是在调页面控件位置的时候更是
+            觉得烦恼。而且可能我是男生的原因吧天生审美不够，总觉得自己做出来的界面很丑。然后就是掌握了一些Augular基本语法，
+            ionic开发的框架。
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><b>意见与建议</b></ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-text>
+            建议就是能不能迟点上课哈哈，但是因为8点机房开门老师估计也没有办法，但是老师有办法的是可以早！下！课！
+            因为每天中午食堂吃饭的人都超！级！多！所以其实很希望老师能提前下课让我们避开汹涌的人海。还有就是我在qq上问
+            老师问题都能得到老师的回复这个很好评，给老师一个赞！
+          </ion-text>
+        </ion-item>
+      </ion-list>
+
+      <ion-card-subtitle>日期</ion-card-subtitle>
+        <div>
+          <ion-datetime display-format="MM DD, YYYY HH:MM" value="2019-12-24T21:57" disabled="true"></ion-datetime>
+        </div>
+      </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -18,7 +18,7 @@
             <ion-badge slot="end" color="danger">VIP</ion-badge>
           </ion-item>
           <ion-menu-toggle auto-hide="ture" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="medium">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" color="medium" detail>
               <ion-icon slot="start" [name]="p.icon" ></ion-icon>
               <ion-label>
                 {{p.title}}
