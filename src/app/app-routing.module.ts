@@ -24,7 +24,11 @@ const routes: Routes = [
   { path: 'about-us', loadChildren: './views/about-us/about-us.module#AboutUsPageModule' },
   { path: 'change-password', loadChildren: './views/change-password/change-password.module#ChangePasswordPageModule' },
   { path: 'shop', loadChildren: './views/shop/shop.module#ShopPageModule' },
-  { path: 'shop-edit', loadChildren: './views/shop-edit/shop-edit.module#ShopEditPageModule' }
+  { path: 'shop-edit', loadChildren: './views/shop-edit/shop-edit.module#ShopEditPageModule' },
+  { path: 'category-list', loadChildren: './views/category-list/category-list.module#CategoryListPageModule' },
+  { path: 'category-add', loadChildren: './views/category-add/category-add.module#CategoryAddPageModule' },  { path: 'category-edit', loadChildren: './views/category-edit/category-edit.module#CategoryEditPageModule' }
+
+
 
 ];
 

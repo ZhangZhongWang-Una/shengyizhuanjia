@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { AlertController, NavController, ToastController, MenuController, IonSlides } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/shared/services/user-service.service';
+import { UserServiceService, USER_KEY } from 'src/app/shared/services/user-service.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -59,7 +59,7 @@ params: any = {
     this.forgotPasswordSlides.lockSwipes(true);
   }
   async checkAccount() {
-    const user = this.localStorage.get('user', '');
+    const user = this.localStorage.get(USER_KEY, '');
     if (this.account === '') {
       const toast = await this.toastCtrl.create({
       message: '请输入您的邮箱或者手机号码',

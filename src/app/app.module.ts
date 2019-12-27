@@ -1,3 +1,4 @@
+import { CategoryService } from './shared/services/category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SaleService } from './shared/services/sale.service';
 import { UserServiceService } from './shared/services/user-service.service';
@@ -33,7 +34,8 @@ import { AppRoutingModule } from './app-routing.module';
     LocalStorageService,
     AuthenticationCodeService,
     UserServiceService,
-    SaleService
+    SaleService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })
