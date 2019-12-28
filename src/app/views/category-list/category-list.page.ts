@@ -50,13 +50,14 @@ export class CategoryListPage implements OnInit {
             role: 'destructive',
             handler: () => {
               console.log('Destructive clicked');
-              this.router.navigate(['/category-add'], {queryParams: {' catagoryName': this.activeCategory.name}});
+              this.router.navigate(['/category-add'], {queryParams: {' categoryName': this.activeCategory.name}});
             }
           }, {
             text: '编辑分类',
             handler: () => {
               console.log('Archive clicked');
-              this.router.navigate(['/category-edit', this.activeCategory.id]);
+              this.router.navigate(['/category-edit'], {queryParams: {'categoryId': this.activeCategory.id}});
+              // this.router.navigate(['/category-edit', this.activeCategory.id]);
             }
           }, {
             text: '取消',

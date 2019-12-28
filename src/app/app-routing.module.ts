@@ -26,7 +26,8 @@ const routes: Routes = [
   { path: 'shop', loadChildren: './views/shop/shop.module#ShopPageModule' },
   { path: 'shop-edit', loadChildren: './views/shop-edit/shop-edit.module#ShopEditPageModule' },
   { path: 'category-list', loadChildren: './views/category-list/category-list.module#CategoryListPageModule' },
-  { path: 'category-add', loadChildren: './views/category-add/category-add.module#CategoryAddPageModule' },  { path: 'category-edit', loadChildren: './views/category-edit/category-edit.module#CategoryEditPageModule' }
+  { path: 'category-add', loadChildren: './views/category-add/category-add.module#CategoryAddPageModule' },  { path: 'category-edit', loadChildren: './views/category-edit/category-edit.module#CategoryEditPageModule' },
+  { path: 'category-edit-name', loadChildren: './views/category-edit-name/category-edit-name.module#CategoryEditNamePageModule' }
 
 
 

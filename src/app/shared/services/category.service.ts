@@ -133,7 +133,7 @@ export class CategoryService {
    * 通过分类名字找到它子分类的最后一个id
    */
   findSubCategoryLastIndexByCategoryName(name: string): number {
-    const cg = this.localStorageService.get(CATEGORY_KEY, CATEGORIES);
+    const cg = this.all();
     for ( let i = 0; i < cg.length; i++) {
       if (cg[i].name === name) {
         return cg[i].children.length;
@@ -146,17 +146,17 @@ export class CategoryService {
    * 获得大分类的长度
    */
   getCategoryLength(): number {
-    const cg = this.localStorageService.get(CATEGORY_KEY, CATEGORIES);
+    const cg = this.all();
     return cg.length;
   }
 
   /**
    * 获取商品类别
    */
-  findCategoryById(id: number): Category {
-    const cg = this.localStorageService.get(CATEGORY_KEY, CATEGORIES);
+  findCategoryById(id: string): Category {
+    const cg = this.all();
     for ( let i = 0; i < cg.length; i++) {
-      if (cg[i].id === id) {
+      if (cg[i].id.toString() === id) {
         return cg[i];
       }
     }
@@ -166,5 +166,53 @@ export class CategoryService {
       children: []
     };
     return category;
+  }
+
+  /**
+   * 通过名字删除商品小分类
+   */
+  deleteSubCategoryById(category: Category, id: number): boolean {
+    if (category == null) {
+      return false;
+    }
+    for (let i = 0; i < category.children.length; i++) {
+      if (category.children[i].id === id) {
+        const index = this.findCategoryIndexByName(category.name);
+        let tmp = this.all();
+        tmp[index].children.splice(i, 1);
+        this.localStorageService.set(CATEGORY_KEY, tmp);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * 通过id删除商品分类
+   */
+  deleteCategoryById(id: number): boolean {
+    const tmp = this.all();
+    for (let i = 0; i < tmp.length; i++) {
+      if (tmp[i].id === id) {
+        tmp.splice(i, 1);
+        this.localStorageService.set(CATEGORY_KEY, tmp);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
+   * 通过传入商品分类修改数据
+   */
+  modifyCategory(cg: Category): boolean {
+    const index = this.findCategoryIndexById(cg.id);
+    if (index === -1) {
+      return false;
+    }
+    let tmp = this.all();
+    tmp[index] = cg;
+    this.update(tmp);
+    return true;
   }
 }

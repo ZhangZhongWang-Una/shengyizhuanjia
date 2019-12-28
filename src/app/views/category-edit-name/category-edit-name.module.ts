@@ -1,4 +1,3 @@
-import { CategoryEditNamePage } from './../category-edit-name/category-edit-name.page';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -6,12 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CategoryEditPage } from './category-edit.page';
+import { CategoryEditNamePage } from './category-edit-name.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CategoryEditPage
+    component: CategoryEditNamePage
   }
 ];
 
@@ -22,11 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [
-    CategoryEditPage,
-    CategoryEditNamePage],
-  entryComponents: [
-    CategoryEditNamePage
-  ]
+  declarations: [CategoryEditNamePage]
 })
-export class CategoryEditPageModule {}
+export class CategoryEditNamePageModule {}
