@@ -1,4 +1,4 @@
-import { Register } from './../../views/passport/register';
+import { Register } from '../model/register';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { ISLOGIN_KEY } from 'src/app/views/welcome/welcome.page';

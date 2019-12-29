@@ -1,5 +1,5 @@
 import { APP_KEY } from './../../welcome/welcome.page';
-import { Register } from './../register';
+import { Register } from '../../../shared/model/register';
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { AuthenticationCodeService } from 'src/app/shared/services/authentication-code.service';
 import { NavController, IonSlides, AlertController, MenuController, ToastController } from '@ionic/angular';
