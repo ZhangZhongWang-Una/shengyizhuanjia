@@ -64,4 +64,8 @@ export class LoginPage implements OnInit {
   openForgotPassword() {
     this.router.navigateByUrl('/forgot-password');
   }
+
+  ionViewWillEnter() {
+    this.menuController.enable(false);
+  }
 }

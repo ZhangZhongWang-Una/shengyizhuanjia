@@ -1,4 +1,4 @@
-import { ISLOGIN_KEY } from './../welcome/welcome.page';
+import { ISLOGIN_KEY, APP_KEY } from './../welcome/welcome.page';
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { NavController } from '@ionic/angular';
@@ -18,7 +18,7 @@ export class SettingPage implements OnInit {
   private version: any = '';
 
   ngOnInit() {
-    const app = this.localStorageService.get('App', {version: '1.0.0'});
+    const app = this.localStorageService.get(APP_KEY, {version: '1.0.0'});
     this.version = app.version;
   }
 
@@ -32,5 +32,12 @@ export class SettingPage implements OnInit {
     };
     this.localStorageService.set(ISLOGIN_KEY, isLogin);
     this.router.navigateByUrl('/login');
+  }
+
+  /**
+   * 页面跳转
+   */
+  goToPage(page: string) {
+    this.router.navigateByUrl(page);
   }
 }

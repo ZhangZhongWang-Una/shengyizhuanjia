@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SaleService } from '../shared/services/sale.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,8 @@ export class HomePage {
       {'disable': true}
     ]
   ];
-  constructor(private sale: SaleService) {
+  constructor(private sale: SaleService,
+              private menuController: MenuController) {
     this.sales = [
       {title : '今日', content : '比昨日', previous : this.sale.getSales(), current : this.sale.getSales()},
       {title : '七日', content : '比同期', previous : this.sale.getSales(), current : this.sale.getSales()},
@@ -48,4 +50,11 @@ export class HomePage {
     }
   }
 
+  ionViewWillEnter() {
+    this.menuController.enable(true);
+  }
+
+  ionViewDidLeave() {
+    this.menuController.enable(false);
+  }
 }

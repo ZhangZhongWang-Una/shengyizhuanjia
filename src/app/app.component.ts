@@ -52,9 +52,9 @@ export class AppComponent {
     this.menuController.enable(false);
   }
 
-  // ionViewDidLeave() {
-  //   this.menuController.enable(true);
-  // }
+  ionViewDidLeave() {
+    this.menuController.enable(true);
+  }
 
   goToSetting() {
     this.ionViewWillEnter();

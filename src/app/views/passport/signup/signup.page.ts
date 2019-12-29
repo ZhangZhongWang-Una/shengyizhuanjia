@@ -220,13 +220,4 @@ export class SignupPage implements OnInit {
 
       this.router.navigateByUrl('/login');
     }
-
-    // 禁用菜单
-    ionViewWillEnter() {
-      this.menuController.enable(false);
-    }
-
-    // ionViewDidLeave() {
-    //   this.menuController.enable(true);
-    // }
 }
