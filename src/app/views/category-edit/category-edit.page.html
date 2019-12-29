@@ -1,13 +1,13 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button text="返回" color="primary"></ion-back-button>
+      <ion-back-button text="返回" color="light"></ion-back-button>
     </ion-buttons>
     <ion-title>编辑分类</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" color="medium">
+<ion-content class="ion-no-padding" >
   <div>
     <ion-list lass="ion-margin-top">
       <ion-list-header>
@@ -18,6 +18,8 @@
           <ion-label>{{category.name}}</ion-label>
         </ion-item>
         <ion-item-options side="end">
+          <!-- <ion-button color='primary' expand="full"  (click)="onEditCategoryName(categoryItem)">编辑</ion-button>
+          <ion-button color='danger' expand="full"  (click)="onDelete(categoryItem)">删除</ion-button> -->
           <ion-item-option color="primary" (click)="onEditCategoryName(categoryItem)">
             <ion-icon name="create"></ion-icon>编辑
           </ion-item-option>

@@ -1,3 +1,6 @@
+import { SupplyService } from './shared/services/supply.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ProductService } from './shared/services/product.service';
 import { CategoryService } from './shared/services/category.service';
 import { HttpClientModule } from '@angular/common/http';
 import { SaleService } from './shared/services/sale.service';
@@ -14,7 +17,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { AppRoutingModule } from './app-routing.module';
-
+import { Camera } from '@ionic-native/camera/ngx';
+import { ImagePicker } from '@ionic-native/image-picker/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -35,7 +39,12 @@ import { AppRoutingModule } from './app-routing.module';
     AuthenticationCodeService,
     UserServiceService,
     SaleService,
-    CategoryService
+    CategoryService,
+    ProductService,
+    BarcodeScanner,
+    Camera,
+    ImagePicker,
+    SupplyService
   ],
   bootstrap: [AppComponent]
 })

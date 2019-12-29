@@ -1,9 +1,9 @@
-import { LocalStorageService } from './../../shared/services/local-storage.service';
 import { Router } from '@angular/router';
-import { CategoryService, CATEGORY_KEY } from './../../shared/services/category.service';
+import { CategoryService,} from './../../shared/services/category.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/shared/model/category';
 import { ActionSheetController, Events } from '@ionic/angular';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category-list',
@@ -18,7 +18,8 @@ export class CategoryListPage implements OnInit {
   constructor(private categoryService: CategoryService,
               private actionSheetController: ActionSheetController,
               private router: Router,
-              private events: Events) {
+              private events: Events,
+              private location: Location) {
     categoryService.getAll().then((data) => {
       this.categories = data.result;
       if (this.categories) {
@@ -71,6 +72,9 @@ export class CategoryListPage implements OnInit {
     await actionSheet.present();
   }
 
+  /**
+   * 选中颜色变化
+   */
   getItemColor(id: number): string {
     if (id === this.activeCategory.id) {
       return '';
@@ -78,10 +82,20 @@ export class CategoryListPage implements OnInit {
       return 'light';
     }
   }
-
+  /**
+   * 选中大分类
+   */
   selectCategory(category: Category) {
     this.activeCategory = category;
     this.subCategories = this.activeCategory.children;
+  }
+
+  /**
+   * 选中小分类
+   */
+  onSelect(category: Category) {
+    this.events.publish('category:selected', category, Date.now());
+    this.location.back();
   }
 
 }

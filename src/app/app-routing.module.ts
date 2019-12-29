@@ -27,7 +27,9 @@ const routes: Routes = [
   { path: 'shop-edit', loadChildren: './views/shop-edit/shop-edit.module#ShopEditPageModule' },
   { path: 'category-list', loadChildren: './views/category-list/category-list.module#CategoryListPageModule' },
   { path: 'category-add', loadChildren: './views/category-add/category-add.module#CategoryAddPageModule' },  { path: 'category-edit', loadChildren: './views/category-edit/category-edit.module#CategoryEditPageModule' },
-  { path: 'category-edit-name', loadChildren: './views/category-edit-name/category-edit-name.module#CategoryEditNamePageModule' }
+  { path: 'category-edit-name', loadChildren: './views/category-edit-name/category-edit-name.module#CategoryEditNamePageModule' },
+  { path: 'product-add', loadChildren: './views/product-add/product-add.module#ProductAddPageModule' },
+  { path: 'supply-select', loadChildren: './views/supply-select/supply-select.module#SupplySelectPageModule' }
 
 
 

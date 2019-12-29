@@ -3,12 +3,14 @@ import { Injectable } from '@angular/core';
 import { CATEGORIES } from '../model/mock.categories';
 import { AjaxResult } from '../model/ajax-result';
 import { Category } from '../model/category';
+import { Subject, Observable } from 'rxjs';
+import { AcitveCategory } from '../model/active-category';
 export const CATEGORY_KEY = 'Category';
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-
+  categorySubject = new Subject<AcitveCategory>();
   constructor(private localStorageService: LocalStorageService) { }
 
   /**
@@ -214,5 +216,9 @@ export class CategoryService {
     tmp[index] = cg;
     this.update(tmp);
     return true;
+  }
+
+  watchCategory(): Observable<AcitveCategory> {
+    return this.categorySubject.asObservable();
   }
 }

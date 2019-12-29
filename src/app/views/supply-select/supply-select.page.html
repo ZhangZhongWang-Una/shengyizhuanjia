@@ -1,16 +1,10 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-title>
-           修改分类名称
+           选择供应商
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()">
-        <!-- <ion-show-when mode="ios">
-          <ion-text color="primary">取消</ion-text>
-        </ion-show-when>
-        <ion-show-when mode="md">
-          <ion-icon name="close" style="font-size: 50px;"></ion-icon>
-        </ion-show-when> -->
         <ion-text color="primary" showWhen="ios">取消</ion-text>
         <ion-icon name="close" style="font-size: 20px;" showWhen="md"></ion-icon>
       </ion-button>
@@ -22,7 +16,11 @@
   <form>
     <ion-list>
       <ion-item>
-        <ion-input name="name" [(ngModel)]="name" type="text" placeholder="{{name}}"></ion-input>
+        <ion-text>现有供应商如下：</ion-text>
+      </ion-item>
+      <ion-item *ngFor="let s of suppliers" (click)="onClick(s)"
+                [ngClass]="{'item-active': s.name == activeSupplier.name}">
+        <ion-label [color]="getItemColor(s.id)">{{s.name}}</ion-label>
       </ion-item>
     </ion-list>
     <div class="ion-padding-horizontal">

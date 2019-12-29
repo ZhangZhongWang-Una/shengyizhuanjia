@@ -11,7 +11,7 @@ export class HomePage {
   sales: Array<{title: string, content: string, previous: number, current: number}>;
   quicks = [
     [
-      {'href': '/addProduct', 'name': 'add_salse', 'text': '新增商品', 'disable': false},
+      {'href': '/product-add', 'name': 'add_salse', 'text': '新增商品', 'disable': false},
       {'href': '/home', 'name': 'add_user', 'text': '新增会员', 'disable': false},
       {'href': '/home', 'name': 'sales_account', 'text': '收银记账', 'disable': false},
       {'href': '/home', 'name': 'a_note', 'text': '支出管理', 'disable': false}
