@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 import { SHOP_KEY } from '../shop-edit/shop-edit.page';
@@ -12,7 +13,8 @@ import { SIGNUPTIME_KEY } from 'src/app/shared/services/user-service.service';
 export class ShopPage implements OnInit {
   shop: any;
   signup: any;
-  constructor(private localStorageService: LocalStorageService) {}
+  constructor(private localStorageService: LocalStorageService,
+              private router: Router) {}
 
   ngOnInit() {
     this.ionViewWillEnter();
@@ -30,5 +32,12 @@ export class ShopPage implements OnInit {
       });
     this.signup = this.localStorageService.get(SIGNUPTIME_KEY, '');
     this.localStorageService.set(SHOP_KEY, this.shop);
+  }
+
+  /**
+   * 页面跳转
+   */
+  goToPage(page: string) {
+    this.router.navigateByUrl(page);
   }
 }

@@ -1,7 +1,9 @@
 <ion-header>
   <ion-toolbar>
       <ion-buttons slot="start">
-          <ion-back-button text="返回" color="primary"></ion-back-button>
+          <ion-button (click)="goToPage('/home')" color="primary">
+            <ion-icon name="arrow-back"></ion-icon>返回</ion-button>
+          <!-- <ion-back-button text="返回" color="primary"></ion-back-button> -->
       </ion-buttons>
     <ion-title>店铺设置</ion-title>
   </ion-toolbar>

@@ -1,6 +1,6 @@
 import { CategoryService } from 'src/app/shared/services/category.service';
 import { LocalStorageService } from './../../shared/services/local-storage.service';
-import { ModalController, IonItemSliding, AlertController } from '@ionic/angular';
+import { ModalController, IonItemSliding, AlertController, ToastController, Events } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/shared/model/category';
 import { CategoryEditNamePage } from '../category-edit-name/category-edit-name.page';
@@ -14,11 +14,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CategoryEditPage implements OnInit {
   private categoryId: any;
   private category: Category;
+  private tab: number;
   constructor(private modalController: ModalController,
               private categoryService: CategoryService,
               private activatedRoute: ActivatedRoute,
               private alertController: AlertController,
-              private router: Router) {
+              private router: Router,
+              private toastCtrl: ToastController) {
                 this.activatedRoute.queryParams.subscribe(queryParams => {
                   this.categoryId = queryParams.categoryId;
                   this.category = this.categoryService.findCategoryById(this.categoryId);
@@ -58,7 +60,20 @@ export class CategoryEditPage implements OnInit {
   async onEditSubCategoryName(item: IonItemSliding, subCategory: Category) {
     item.close();
     const {data} = await this.presentModal(subCategory.name);
-    if (data) {
+    this.tab = 0;
+    for (let i = 0; i < this.category.children.length; i++) {
+      if (data === this.category.children[i].name || data === '') {
+        // console.log('名字重复');
+        const toast = await this.toastCtrl.create({
+          message: '编辑失败，存在相同名称或者名称不能为空',
+          duration: 3000
+        });
+        toast.present();
+        this.tab = 1;
+        break;
+      }
+    }
+    if (this.tab === 0) {
       subCategory.name = data;
     }
   }

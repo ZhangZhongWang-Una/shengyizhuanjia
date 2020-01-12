@@ -40,4 +40,5 @@ export class SettingPage implements OnInit {
   goToPage(page: string) {
     this.router.navigateByUrl(page);
   }
+
 }

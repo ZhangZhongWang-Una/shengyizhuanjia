@@ -39,13 +39,13 @@ export class AuthenticationCodeService {
       // console.log(value == this.code)
       return value === this.code && now < this.deadline;
   }
-
  // 发送短信
  sendSms(phone: string , count: number): void {
   this.code = '';
   this.deadline = Date.now() + 60 * 10 * 1000;
   let strSig = 'appkey=' + this.appKey + '&random=' + this.strRand + '&time=' + this.now + '&mobile=' + phone;
-  let url = '/api' + '?sdkappid=' + this.sdkAppId + '&random=' + this.strRand;
+  // let url = '/api' + '?sdkappid=' + this.sdkAppId + '&random=' + this.strRand;
+  let url = 'https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=' + this.sdkAppId + '&random=' + this.strRand;
   let sig = CryptoJS.SHA256(strSig) + '';
   for (let i = 0; i < count; i++) {
     let num = Math.floor(Math.random() * 10);
@@ -70,5 +70,6 @@ console.log('验证码：' + this.code);
       let res = response;
       console.log(res);
   });
+
  }
 }

@@ -159,7 +159,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
    */
   ionViewDidEnter() {
     // 订阅消息
-    this.events.subscribe('category: selected', (category, time) => {
+    this.events.subscribe('category:selected', (category, time) => {
       console.log(category.name, time);
       this.product.category = category;
       this.product.categoryName = category.name;
@@ -178,7 +178,12 @@ export class ProductAddPage implements OnInit, OnDestroy {
    * 转跳到商品类别界面
    */
   gotoCategyList() {
-    this.router.navigateByUrl('/category-list');
+    this.router.navigate(['/category-list'], {
+      queryParams: {
+        tab : 'FromProductAdd'
+      }
+    });
+    // this.router.navigateByUrl('/category-list');
   }
 
   /**

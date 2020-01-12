@@ -1,3 +1,4 @@
+import { Md5 } from 'ts-md5/dist/md5';
 import { Register } from '../model/register';
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
@@ -26,8 +27,9 @@ export class UserServiceService {
       shopName: register.shopName,
       accounts: []
     };
-    user.accounts[0] = { identifier: register.phone, passwordToken: register.password};
-    user.accounts[1] = { identifier: register.email, passwordToken: register.password};
+    const md5Password = Md5.hashStr(register.password).toString();
+    user.accounts[0] = { identifier: register.phone, passwordToken: md5Password};
+    user.accounts[1] = { identifier: register.email, passwordToken: md5Password};
     this.localStorageService.set(USER_KEY, user); console.log(user);
 
     const time = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
@@ -54,10 +56,10 @@ export class UserServiceService {
       return false; // 账号或密码错误
     }
     const loginTime = new Date(+new Date() + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
-    const isLoginConfig: any = this.localStorageService.get(ISLOGIN_KEY, {
+    const isLoginConfig = {
       hasLogin: true,
       time: loginTime
-    });
+    };
     this.localStorageService.set(ISLOGIN_KEY, isLoginConfig);
     return true;
   }

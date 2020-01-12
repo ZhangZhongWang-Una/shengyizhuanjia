@@ -1,10 +1,12 @@
 import { ISLOGIN_KEY } from './../../welcome/welcome.page';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { NavController, ToastController, AlertController, MenuController } from '@ionic/angular';
+import { NavController, ToastController, AlertController, MenuController, Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserServiceService, USER_KEY } from 'src/app/shared/services/user-service.service';
 import { NgForm } from '@angular/forms';
+import { Md5 } from 'ts-md5';
+import { SHOP_KEY } from '../../shop-edit/shop-edit.page';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginPage implements OnInit {
               private toastCtrl: ToastController,
               private alertCtrl: AlertController,
               private userService: UserServiceService,
-              private menuController: MenuController) { }
+              private menuController: MenuController,
+              public events: Events) { }
 
   ngOnInit() {
   }
@@ -45,7 +48,8 @@ export class LoginPage implements OnInit {
     } else {
       // 密码不对时提示错误
       const accounts = this.localStorageService.get(USER_KEY, '').accounts;
-      if (!this.userService.login(this.username, this.password)) {
+      const md5Password = Md5.hashStr(this.password).toString();
+      if (!this.userService.login(this.username, md5Password)) {
         const alert = await this.alertCtrl.create({
           header: '提示',
           message: '用户名或者密码不正确',
@@ -54,6 +58,18 @@ export class LoginPage implements OnInit {
         alert.present();
       } else {
         this.menuController.enable(true);
+        this.username = '';
+        this.password = '';
+        const shop = this.localStorageService.get(SHOP_KEY,
+          {
+            shopName: '',
+            shortName: '',
+            phone: '',
+            email: '',
+            shopKeeperName: '',
+            shopTel: ''
+          });
+        this.events.publish('shop:modified', shop);
         this.router.navigateByUrl('/home');
       }
     }
@@ -67,5 +83,7 @@ export class LoginPage implements OnInit {
 
   ionViewWillEnter() {
     this.menuController.enable(false);
+    this.username = this.localStorageService.get(USER_KEY, '').accounts[0].identifier;
+
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
-import { ToastController} from '@ionic/angular';
+import { ToastController, Events } from '@ionic/angular';
+import { USER_KEY } from 'src/app/shared/services/user-service.service';
 export const SHOP_KEY = 'Shop';
 @Component({
   selector: 'app-shop-edit',
@@ -16,7 +17,8 @@ export class ShopEditPage implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private localStorageService: LocalStorageService,
               private toastCtrl: ToastController,
-              private router: Router) {
+              private router: Router,
+              public events: Events) {
 
                 activatedRoute.queryParams.subscribe(queryParams => {
                 this.property = queryParams.property;
@@ -42,6 +44,13 @@ export class ShopEditPage implements OnInit {
       });
     this.shop[this.property] = this.value;
     this.localStorageService.set(SHOP_KEY, this.shop);
+    const user = this.localStorageService.get(USER_KEY, '');
+    if ( user != null) {
+      user.shopName = this.shop.shopName;
+      user.accounts = user.accounts;
+    }
+    this.localStorageService.set(USER_KEY, user);
+    this.events.publish('shop:modified', this.shop);
     this.value = '';
     const toast = await this.toastCtrl.create({
       message: '保存成功',

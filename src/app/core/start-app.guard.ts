@@ -24,16 +24,16 @@ export class StartAppGuard implements CanActivate {
         if ( appConfig.hasRun === false ) {
           appConfig.hasRun = true;
           this.localStorageService.set(APP_KEY, appConfig);
-          this.router.navigateByUrl('home');
+          // this.router.navigateByUrl('welcome');
           return true;
         } else {
           const now = new Date(+new Date() - 136 * 3600 * 1000 ).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
           if (now < isLoginConfig.time && isLoginConfig.hasLogin === true) {
             this.router.navigateByUrl('home');
-            return true;
+            return false;
           } else {
             this.router.navigateByUrl('login');
-            return true;
+            return false;
           }
         }
   }

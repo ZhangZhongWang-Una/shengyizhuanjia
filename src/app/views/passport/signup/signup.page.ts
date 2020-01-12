@@ -154,6 +154,20 @@ export class SignupPage implements OnInit {
   }
 
   /**
+   * 保存用户信息 和 商铺信息
+   */
+  saveUser(): boolean {
+    const res: boolean = this.userService.signUp(this.signup);
+    if (res === true) {
+      console.log('注册成功');
+      return true;
+    } else {
+      console.log('注册失败');
+      return false;
+    }
+  }
+
+  /**
    * 跳转欢迎页面
    */
   returnWelcome() {
@@ -186,20 +200,6 @@ export class SignupPage implements OnInit {
 
     // 重置verifyCode
     this.verifyCode.code = '';
-  }
-
-  /**
-   * 保存用户信息 和 商铺信息
-   */
-  saveUser(): boolean {
-      const res: boolean = this.userService.signUp(this.signup);
-      if (res === true) {
-        console.log('注册成功');
-        return true;
-      } else {
-        console.log('注册失败');
-        return false;
-      }
   }
 
   /**

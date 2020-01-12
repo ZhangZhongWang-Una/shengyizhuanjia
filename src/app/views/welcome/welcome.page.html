@@ -27,10 +27,10 @@
 
     <ion-row >
       <ion-col >
-        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showlogin" href="/login" >登录</ion-button>
+        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showlogin" (click)="gotoPage('/login')" >登录</ion-button>
       </ion-col>
       <ion-col >
-        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showregister" href="/signup">注册</ion-button>
+        <ion-button color="primary" fill="outline" expand="bolck" [hidden]="showregister" (click)="gotoPage('/signup')">注册</ion-button>
       </ion-col>
     </ion-row>
 

@@ -47,6 +47,10 @@ export class WelcomePage implements OnInit {
     this.menuController.enable(false);
   }
 
+  gotoPage(str: string): void {
+    this.router.navigateByUrl(str);
+  }
+
   // ionViewDidLeave() {
   //   this.menuController.enable(true);
   // }
