@@ -5,5 +5,7 @@
 > 开发环境 ionic4 angular8
 
 - 短信发送阿里的API没实现成功，我是通过腾讯短信API，申请签名的时候选择小程序或者微信公众号，所以想要参考我的文档实现短信发送的需要先申请微信小程序或者微信公众号。
+- 在浏览器上发送https请求需要做跨域处理，[跨域解决](https://blog.csdn.net/zzw1248001691/article/details/103636927)。
 - 整个工程里面比如Md5模块，Camera模块等等自行百度安装。
-- 最后由衷感谢我的直系学长[Github:mooxLiu](https://github.com/mooxLiu/shengyizhuanjia_ionic)。
+- 因为短信请求时做了跨域处理，最后在真机运行的时候，不用做跨域处理，请求地址直接把全路径写上就好了
+- 最后由衷感谢我的直系学长mooxLiu。
