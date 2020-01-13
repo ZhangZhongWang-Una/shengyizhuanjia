@@ -304,4 +304,7 @@ export class ProductAddPage implements OnInit, OnDestroy {
     await alert.present();
   }
 
+  gotoPage(str: string): void {
+    this.router.navigateByUrl(str);
+  }
 }

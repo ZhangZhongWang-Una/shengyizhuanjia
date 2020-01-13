@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 
-import { Platform, MenuController, NavController, Events } from '@ionic/angular';
+import { Platform, MenuController, NavController, Events, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { Router } from '@angular/router';
 import { USER_KEY } from './shared/services/user-service.service';
-import { SHOP_KEY } from './views/shop-edit/shop-edit.page';
+
 
 @Component({
   selector: 'app-root',
@@ -33,9 +33,11 @@ export class AppComponent {
     private menuController: MenuController,
     private navCtrl: NavController,
     private router: Router,
-    public events: Events
+    public events: Events,
+    private alertController: AlertController
   ) {
     this.initializeApp();
+    this.backButtonEvent();
     this.events.subscribe('shop:modified', (shop) => {
       if (shop != null && shop.phone !== '' && shop.phone != null) {
         this.shopName = shop.shopName;
@@ -49,25 +51,11 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
-    console.log(1);
     const user = this.localStorageService.get(USER_KEY, '');
     if ( user != null) {
       this.shopName = user.shopName;
       this.phone = user.accounts[0].identifier;
     }
-    // const shop = this.localStorageService.get(SHOP_KEY,
-    //   {
-    //     shopName: '',
-    //     shortName: '',
-    //     phone: '',
-    //     email: '',
-    //     shopKeeperName: '',
-    //     shopTel: ''
-    //   });
-    // if (shop != null && shop.phone !== '' && shop.phone != null) {
-    //   this.shopName = shop.shopName;
-    //   this.phone = shop.phone;
-    // }
   }
 
   ionViewWillEnter() {
@@ -84,5 +72,45 @@ export class AppComponent {
     console.log('go to setting page');
     this.router.navigateByUrl('/setting');
   }
+
+  lastTimeBackPress = 0;
+  timePeriodToExit = 2000;
+
+  backButtonEvent() {
+    this.platform.backButton.subscribe(() => {
+      // console.log(this.router.url);
+      if (this.router.url === '/home') {
+        if (new Date().getTime() - this.lastTimeBackPress < this.timePeriodToExit) {
+          navigator['app'].exitApp(); // 退出APP
+        } else {
+          // this.presentAlertConfirm();
+          this.lastTimeBackPress = new Date().getTime(); // 再按
+        }
+        // navigator['app'].exitApp(); //ionic4 退出APP的方法
+      }
+    });
+    }
+
+    async presentAlertConfirm() {
+      const alert = await this.alertController.create({
+        // header: 'Confirm!',
+        message: '您要退出APP吗?',
+        buttons: [
+          {
+            text: '取消',
+            role: 'cancel',
+            cssClass: 'secondary',
+          handler: (blah) => {
+          }
+          }, {
+            text: '退出',
+            handler: () => {
+            navigator['app'].exitApp();
+          }
+        }
+      ]
+      });
+      await alert.present();
+    }
 
 }
